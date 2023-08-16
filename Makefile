@@ -6,6 +6,7 @@ PROGS = sumvec \
     sumarrayrows\
 	sumarraycols\
 	sumarray3d\
+	sumrecur
 
 all: $(PROGS) timing.h
 
