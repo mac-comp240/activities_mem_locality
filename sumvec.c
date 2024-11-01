@@ -5,7 +5,6 @@
 #include "timing.h"
 
 #define N 1048576   // default length of array: 1<<20, or a 'mega', or 2^20 integers
-                    // cannot be much larger than this in our codio VM
                     
 #define STRIDE 1    // default stride (see sumvec_stride below)
 
@@ -68,8 +67,7 @@ int main(int argc, char *argv[]) {
            argv[0], array_length, stride);
     
     // array to use. 
-    // Note that we did not use malloc here- you could change it to do so for practice
-    int vector[array_length];      // vector array to hold data values
+    int * vector = malloc(sizeof(int) * array_length);
 
     // other variables
     int i;
@@ -79,6 +77,7 @@ int main(int argc, char *argv[]) {
     wallclock_t  t;       // from "timing.h", holds time data
     double  s;            // seconds
     ///////////////////////
+
 
     // initialize our vector of data, vector
     for (i = 0; i < array_length; i++) {
@@ -95,9 +94,10 @@ int main(int argc, char *argv[]) {
     printf("stride 1: sum=%d\n", sum);
     printf("That took %.9f seconds wall clock time.\n", s);
 //     */
+
     
     // now try with a particular stride
-//     /*
+    // /*
     wallclock_mark(&t);       // start timing
     sum = sumvec_stride(vector, stride, array_length);
     s = wallclock_since(&t);  // finish timing
@@ -105,7 +105,7 @@ int main(int argc, char *argv[]) {
     //should sum to zero
     printf("stride of %d: sum=%d\n", stride, sum);
     printf("That took %.9f seconds wall clock time.\n", s);
-//     */
+    // */
      
     exit(0);
 }
